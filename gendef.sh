@@ -22,4 +22,6 @@ awk -v module="${1}" '
   {
     print $0
   }
-' <<< "$gendef"
+' <<< "$gendef" | tee "${1}.def"
+
+dlltool --input-def "${1}.def" --output-lib "${1}.lib"

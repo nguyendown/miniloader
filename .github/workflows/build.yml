@@ -12,9 +12,7 @@ jobs:
 
       - name: gendef
         shell: bash
-        run: |
-          ./gendef.sh version | tee version.def
-          dlltool --input-def version.def --output-lib version.lib
+        run: ./gendef.sh version
 
       - name: Build
         run: |
