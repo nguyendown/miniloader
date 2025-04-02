@@ -31,5 +31,5 @@ Set-Content -Path "$module.def" -Value $outdef
 
 dlltool --input-def "$module.def" --output-lib "$module.lib"
 
-cmake -G "Visual Studio 17 2022" -A "$platform" -B ./build
-cmake --build ./build --config Release -DMODULE="$module" -DDLL_LOAD="$dllLoad"
+cmake -G "Visual Studio 17 2022" -A "$platform" -B ./build -DMODULE="$module" -DDLL_LOAD="$dllLoad"
+cmake --build ./build --config Release
