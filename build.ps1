@@ -2,6 +2,10 @@ $arch = $args[0]
 $module = $args[1]
 $dllLoad = $args[2]
 
+if (-not $dllLoad) {
+    throw "Usage: .\build.ps1 64 version your.dll"
+}
+
 $platform = if ($arch -eq '32') {
     'Win32'
 } else {
