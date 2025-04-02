@@ -8,13 +8,13 @@ if(NOT MODULE)
 endif()
 
 set(DLL_LOAD "" CACHE STRING "Path or filename to be loaded")
-if (NOT DLL_LOAD)
-    message(FATAL_ERROR "Option 'DLL_LOAD' must be set")
+if (NOT DLL_LOAD_CMAKE)
+    message(FATAL_ERROR "Option 'DLL_LOAD_CMAKE' must be set")
 endif()
 
 add_library(miniloader SHARED main.c ${MODULE}.def)
 
-#target_compile_definitions(miniloader PRIVATE DLL_LOAD="\"${DLL_LOAD}\"")
+target_compile_definitions(miniloader PRIVATE DLL_LOAD="\"${DLL_LOAD_CMAKE}\"")
 
 set_target_properties(miniloader PROPERTIES RUNTIME_OUTPUT_NAME "${MODULE}")
 
