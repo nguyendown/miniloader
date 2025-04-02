@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+
 $arch = $args[0]
 $module = $args[1]
 $dllLoad = $args[2]
