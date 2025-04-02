@@ -10,14 +10,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: gendef
-        shell: bash
-        run: ./gendef.sh version
-
       - name: Build
-        run: |
-          cmake -G "Visual Studio 17 2022" -A "x64" -B "./build" -DMODULE="version" -DDLL_LOAD="b3hm.dll"
-          cmake --build ./build --config Release
+        run: ./build.ps1 64 version b3hm.dll
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
