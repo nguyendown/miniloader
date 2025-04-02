@@ -14,7 +14,7 @@ endif()
 
 add_library(miniloader SHARED main.c ${MODULE}.def)
 
-target_compile_definitions(miniloader PRIVATE DLL_LOAD="\"${DLL_LOAD}\"")
+#target_compile_definitions(miniloader PRIVATE DLL_LOAD="\"${DLL_LOAD}\"")
 
 set_target_properties(miniloader PROPERTIES RUNTIME_OUTPUT_NAME "${MODULE}")
 
