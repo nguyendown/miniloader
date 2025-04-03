@@ -20,10 +20,15 @@ awk -v module="${module}" '
   }
 
   exports_section {
+    if ($0 ~ /@/) {
+      next
+    }
+
     if ($0 ~ /=/) {
       print $0
       next
     }
+
     printf "%s = C:/Windows/System32/%s.%s\n", $0, module, $0
     next
   }
