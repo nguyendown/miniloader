@@ -20,7 +20,6 @@ awk -v module="${module}" '
   }
 
   exports_section {
-    # Skip lines that are already forwarded
     if ($0 ~ /=/) {
       print $0
       next
