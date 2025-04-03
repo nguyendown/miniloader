@@ -14,8 +14,8 @@ endif()
 
 add_library(miniloader SHARED main.c ${MODULE}.def)
 
-target_compile_definitions(miniloader PRIVATE DLL_LOAD=\"{DLL_LOAD}\")
+target_compile_definitions(miniloader PRIVATE DLL_LOAD=\"${DLL_LOAD}\")
 
-set_target_properties(miniloader PROPERTIES RUNTIME_OUTPUT_NAME "${MODULE}")
+set_target_properties(miniloader PROPERTIES PREFIX "" OUTPUT_NAME "${MODULE}")
 
 target_link_libraries(miniloader PRIVATE ${CMAKE_SOURCE_DIR}/${MODULE}.lib)
