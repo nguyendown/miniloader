@@ -11,8 +11,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build
-        run: ./build.ps1 64 d3d9 your.dll
-        # TODO: version d3d9 d3d10 d3d11
+        run: ./build.ps1 64 version your.dll
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
