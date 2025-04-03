@@ -37,3 +37,4 @@ dlltool --input-def "${module}.def" --output-lib "${module}.lib"
 
 cmake -G "MinGW Makefiles" -B ./build -DMODULE="$module" -DDLL_LOAD="$dll_load"
 cmake --build ./build --config Release
+strip --strip-all "./build/$module.dll"
