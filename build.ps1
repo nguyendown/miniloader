@@ -11,13 +11,13 @@ if (-not $dllLoad) {
 if ($arch -in "32", "x86", "win32") {
     $platform = "Win32"
     $machine = "X86"
-    $arch = "x86"
+    $target = "x86"
 } elseif ($arch -in "64", "x64", "amd64") {
     $platform = "x64"
     $machine = "X64"
-    $arch = "amd64"
+    $target = "amd64"
 } else {
-    throw "$arch is not supported"
+    throw "Target $arch is not supported"
 }
 
 $modulePath = "C:\Windows\System32\$module.dll"
@@ -29,7 +29,7 @@ if (-not (Test-Path -Path "$modulePath")) {
 $vswhere = $(Join-Path "${Env:ProgramFiles(x86)}" "\Microsoft Visual Studio\Installer\vswhere.exe")
 $installDir = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 $devShell = $(Join-Path "$installDir" "\Common7\Tools\Launch-VsDevShell.ps1")
-& $devShell -Arch $arch
+& $devShell -Arch $target
 
 $dump = dumpbin /EXPORTS "$modulePath"
 
