@@ -22,13 +22,14 @@ $foundExports = $false
 
 foreach ($line in $gendef) {
     if ($foundExports -and -not $line.Contains("=")) {
-        $functionName = $line.Trim()
-        $outdef += "$functionName = C:/Windows/System32/$module.$functionName" + "`n"
+        if (-not $line.Contains("@")) {
+            $functionName = $line.Trim()
+            $outdef += "$functionName = C:/Windows/System32/$module.$functionName" + "`n"
+        }
         continue
     } elseif ($line.StartsWith("EXPORTS")) {
         $foundExports = $true
     }
-
     $outdef += "$line" + "`n"
 }
 
