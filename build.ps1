@@ -8,14 +8,22 @@ if (-not $dllLoad) {
     throw "Usage: .\build.ps1 64 version your.dll"
 }
 
-if ($arch -eq "32") {
+if ($arch -in "32", "x86", "win32") {
     $platform = "Win32"
     $machine = "X86"
     $arch = "x86"
-} else {
+} elseif ($arch -in "64", "x64", "amd64") {
     $platform = "x64"
     $machine = "X64"
     $arch = "amd64"
+} else {
+    throw "$arch is not supported"
+}
+
+$modulePath = "C:\Windows\System32\$module.dll"
+
+if (-not (Test-Path -Path "$modulePath")) {
+    throw "$modulePath does not exist"
 }
 
 $vswhere = $(Join-Path "${Env:ProgramFiles(x86)}" "\Microsoft Visual Studio\Installer\vswhere.exe")
@@ -23,7 +31,6 @@ $installDir = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Co
 $devShell = $(Join-Path "$installDir" "\Common7\Tools\Launch-VsDevShell.ps1")
 & $devShell -Arch $arch
 
-$modulePath = "C:\Windows\System32\$module.dll"
 $dump = dumpbin /EXPORTS "$modulePath"
 
 $outdef = "LIBRARY $module" + "`n"
