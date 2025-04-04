@@ -7,7 +7,7 @@ if(NOT MODULE)
     message(FATAL_ERROR "Option 'MODULE' must be set")
 endif()
 
-set(DLL_LOAD "" CACHE STRING "Path or filename to be loaded")
+set(DLL_LOAD "" CACHE STRING "DLL to be loaded")
 if (NOT DLL_LOAD)
     message(FATAL_ERROR "Option 'DLL_LOAD' must be set")
 endif()
